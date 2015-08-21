@@ -19,10 +19,10 @@ function addKeyListeners() {
     keypress.register_combo({
         keys: "down",
         on_keydown: function() {
-                rush=2;
+                rush=5;
         },
         on_release: function() {
-                rush=1;
+                rush=3;
         }
 
     });

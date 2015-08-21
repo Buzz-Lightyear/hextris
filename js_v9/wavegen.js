@@ -40,7 +40,7 @@ function waveGen(hex) {
             this.ct++;
             this.lastGen = this.dt;
             var fv = randInt(0, MainHex.sides);
-            addNewBlock(fv, colors[randInt(0, colors.length)], 1.6 + (this.difficulty / 15) * 3);
+            addNewBlock(fv, colors[0], 1.6 + (this.difficulty / 15) * 3);
             var lim = 5;
             if (this.ct > lim) {
                 var nextPattern = randInt(0, 3 + 21);
@@ -90,16 +90,16 @@ function waveGen(hex) {
             nextLoop: for (var i = 0; i < numColors; i++) {
                 var q = randInt(0, colors.length);
                 for (var j in colorList) {
-                    if (colorList[j] == colors[q]) {
+                    if (colorList[j] == colors[0]) {
                         i--;
                         continue nextLoop;
                     }
                 }
-                colorList.push(colors[q]);
+                colorList.push(colors[0]);
             }
 
             for (var i = 0; i < MainHex.sides; i++) {
-                addNewBlock(i, colorList[i % numColors], 1.5 + (this.difficulty / 15) * 3);
+                addNewBlock(i, colorList[0], 1.5 + (this.difficulty / 15) * 3);
             }
 
             this.ct += 15;
@@ -111,15 +111,15 @@ function waveGen(hex) {
     this.halfCircleGeneration = function() {
         if (this.dt - this.lastGen > (this.nextGen + 500) / 2) {
             var numColors = randInt(1, 3);
-            var c = colors[randInt(0, colors.length)];
+            var c = colors[0];
             var colorList = [c, c, c];
             if (numColors == 2) {
-                colorList = [c, colors[randInt(0, colors.length)], c];
+                colorList = [c, colors[0], c];
             }
 
             var d = randInt(0, 6);
             for (var i = 0; i < 3; i++) {
-                addNewBlock((d + i) % 6, colorList[i], 1.5 + (this.difficulty / 15) * 3);
+                addNewBlock((d + i) % 6, colorList[0], 1.5 + (this.difficulty / 15) * 3);
             }
 
             this.ct += 8;
@@ -132,8 +132,8 @@ function waveGen(hex) {
         if (this.dt - this.lastGen > this.nextGen) {
             var ri = randInt(0, colors.length);
             var i = randInt(0, colors.length);
-            addNewBlock(i, colors[ri], 0.6 + (this.difficulty / 15) * 3);
-            addNewBlock((i + 3) % MainHex.sides, colors[ri], 0.6 + (this.difficulty / 15) * 3);
+            addNewBlock(i, colors[0], 0.6 + (this.difficulty / 15) * 3);
+            addNewBlock((i + 3) % MainHex.sides, colors[0], 0.6 + (this.difficulty / 15) * 3);
             this.ct += 1.5;
             this.lastGen = this.dt;
             this.shouldChangePattern();
@@ -144,9 +144,9 @@ function waveGen(hex) {
         var dir = randInt(0, 2);
         if (this.dt - this.lastGen > this.nextGen * (2 / 3)) {
             if (dir) {
-                addNewBlock(5 - (this.ct % MainHex.sides), colors[randInt(0, colors.length)], 1.5 + (this.difficulty / 15) * (3 / 2));
+                addNewBlock(5 - (this.ct % MainHex.sides), colors[0], 1.5 + (this.difficulty / 15) * (3 / 2));
             } else {
-                addNewBlock(this.ct % MainHex.sides, colors[randInt(0, colors.length)], 1.5 + (this.difficulty / 15) * (3 / 2));
+                addNewBlock(this.ct % MainHex.sides, colors[0], 1.5 + (this.difficulty / 15) * (3 / 2));
             }
             this.ct += 1;
             this.lastGen = this.dt;
@@ -157,8 +157,8 @@ function waveGen(hex) {
     this.doubleGeneration = function() {
         if (this.dt - this.lastGen > this.nextGen) {
             var i = randInt(0, colors.length);
-            addNewBlock(i, colors[randInt(0, colors.length)], 1.5 + (this.difficulty / 15) * 3);
-            addNewBlock((i + 1) % MainHex.sides, colors[randInt(0, colors.length)], 1.5 + (this.difficulty / 15) * 3);
+            addNewBlock(i, colors[0], 1.5 + (this.difficulty / 15) * 3);
+            addNewBlock((i + 1) % MainHex.sides, colors[0], 1.5 + (this.difficulty / 15) * 3);
             this.ct += 2;
             this.lastGen = this.dt;
             this.shouldChangePattern();
